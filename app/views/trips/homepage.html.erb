@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>suggestion</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+
+  <style>
+  .button{
+  color: blue;
+  text-decoration: none;
+  height: 30px;
+  width: 150px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 20px;
+  padding-top: 5px;
+  }
+
+  </style>
+
+
+</head>
+  <body>
+
+
+
+
+
+  <h1></h1>
+
+  <div class = "container">
+
+  <form action="/search">
+    <div class="row">
+        <div class="beach col-sm-6">
+
+          <div class="col-sm-6";>
+          </div>
+
+          <div class="col-sm-6";>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">From:</h3>
+              </div>
+              <div class="panel-body">
+                <input name="first_city" type="text" id="first_city">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style = "background-image: url(<%= asset_path 'forest1.jpg' %>); height: 520px; width: 580px; border: 1px solid black;"  class="col-sm-6">
+          <div class="col-sm-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">To:</h3>
+              </div>
+              <div class="panel-body">
+                <input name="second_city" type="text" id="second_city">
+              </div>
+           </div>
+          </div>
+
+          <div class="row">
+          </div>
+            <div class="col-sm-3">
+              <div class="btn-group">
+                <input type= "submit" class="btn btn-primary" value ="Search">
+              </div>
+            </div>
+        </div>
+    </div>
+  </form>
+
+    <div class="col-sm-3">
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1>Ratings</h1>
+</div>
+
+<p><a href="/ratings/new" class="btn btn-primary">Add a New Rating</a></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Trip</th>
+      <th>Points</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating.user.email %></td>
+        <td><%= rating.trip_id %></td>
+        <td><%= rating.points %></td>
+        <td>
+          <a href="/ratings/<%= rating.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/delete_rating/<%= rating.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h1>Edit Rating #<%= @rating.id %></h1>
+</div>
+
+<% if @rating.errors.any? %>
+  <% @rating.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<form action="/update_rating/<%= @rating.id %>" class="form-horizontal">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id" class="col-sm-2 control-label">
+      User
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @rating.user_id %>">
+    </div>
+  </div>
+
+  <!-- Label and input for trip_id -->
+  <div class="form-group">
+    <label for="trip_id" class="col-sm-2 control-label">
+      Trip
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @rating.trip_id %>">
+    </div>
+  </div>
+
+  <!-- Label and input for points -->
+  <div class="form-group">
+    <label for="points" class="col-sm-2 control-label">
+      Points
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="points" name="points" placeholder="Points" class="form-control" value="<%= @rating.points %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" value="Update Rating" class="btn btn-primary">
+    </div>
+  </div>
+</form>
