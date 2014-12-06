@@ -18,7 +18,7 @@
       From city
     </label>
     <div class="col-sm-10">
-       <input type="text" id="from_city_id" name="from_city_id" placeholder="From_city" class="form-control" value="<%= @trip.from_city_id %>">
+<%= select_tag(:from_city_id, options_from_collection_for_select(City.all, :id, :name, @trip.from_city_id), :class => "form-control") %>
     </div>
   </div>
 
@@ -28,7 +28,7 @@
       To city
     </label>
     <div class="col-sm-10">
-       <input type="text" id="to_city_id" name="to_city_id" placeholder="To_city" class="form-control" value="<%= @trip.to_city_id %>">
+<%= select_tag(:to_city_id, options_from_collection_for_select(City.all, :id, :name, @trip.to_city_id), :class => "form-control") %>
     </div>
   </div>
 
@@ -106,7 +106,7 @@
       Points
     </label>
     <div class="col-sm-10">
-       <%= select_tag(:average_rating, options_for_select(["1", "2", "3", "4", "5"]), :class => "form-control") %>
+       <%= select_tag(:points, options_for_select(["1", "2", "3", "4", "5"]), :class => "form-control") %>
     </div>
   </div>
 

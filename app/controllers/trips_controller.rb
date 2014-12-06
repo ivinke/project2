@@ -24,7 +24,13 @@
     @trip.transportation = params[:transportation]
     @trip.average_rating = params[:average_rating]
 
+    @rating = Rating.new
+    @rating.points = params[:points]
+
     if @trip.save
+      @rating.user_id = current_user.id
+      @rating.trip_id = @trip.id
+      @rating.save
       redirect_to "/trips", :notice => "Trip created successfully."
     else
       render 'new'
@@ -48,9 +54,12 @@
     @trip.transportation = params[:transportation]
     @trip.average_rating = params[:average_rating]
 
+    @rating = Rating.where({ :trip_id => @trip.id, :user_id => current_user.id }).first
+    @rating.points = params[:points]
 
 
     if @trip.save
+      @rating.save
       redirect_to "/trips", :notice => "Trip updated successfully."
     else
       render 'edit'
