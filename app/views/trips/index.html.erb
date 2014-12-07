@@ -1,44 +1,62 @@
-  <div class="page-header">
-    <h1>Trip #<%= @trip.id %></h1>
-  </div>
+<div class="page-header">
+  <h1>Trips</h1>
+</div>
+
+<p><a href="/trips/new" class="btn btn-primary">Add a New Trip</a></p>
+
+<table class="table table-hover">
 
 
+  <tbody>
+    <% @trips.each do |trip| %>
 
-  <div class="container">
+      <div class="container">
 
       <div class="well form-inline">
       <div class = "col-sm-6">
 
-        <div class = "fotoviaje">
-        <img src = "<%= @trip.photo %>">
+       <div class = "fotoviaje">
+        <img src = "<%= trip.photo %>">
         </div>
       </div>
-      <div class = "col-sm-6">
-       <div class="well well-lg">
 
+        <div class = "col-sm-6">
+ <div class="well well-lg">
             <div class = "row">
               <div class = "col-sm-6">
                 <div class="panel panel-default">
                   <div class="panel-heading" style = "background-color:#0EBFE9;">
-                    <h4 align="center" style = "height: 30px; color: white;"> From:   <%= @trip.from_city.name.capitalize %></h4>
+                    <h4 align="center" style = "height: 30px; color: white;"> From:   <%= trip.from_city.name.capitalize %></h4>
                   </div>
+
                 </div>
               </div>
 
               <div class = "col-sm-6">
                 <div class="panel panel-default">
                   <div class="panel-heading" style = "background-color:#0EBFE9;">
-                    <h4 align="center" style = "height:30px; color: white;">To:   <%= @trip.to_city.name.capitalize %></h4>
+                    <h4 align="center" style = "height:30px; color: white;">To:   <%= trip.to_city.name.capitalize %></h4>
                   </div>
                 </div>
               </div>
             </div>
 
-               <div class = "row">
+              <div class = "row">
+              <div class = "col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading" style = "background-color:#8DB6CD;">
+                      <h5 style = "height:60px; color: white; align: center;">Description: <%= trip.notes %></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+              <div class = "row">
               <div class = "col-sm-4">
                 <div class="panel panel-default">
                   <div class="panel-heading" style = "background-color:#63B8FF;">
-                    <h5 align="center" style = "height:30px; color: white;">Price: <%= @trip.cost %>$</h5>
+                    <h5 align="center" style = "height:30px; color: white;">Price: <%= trip.cost %>$</h5>
                   </div>
 
                 </div>
@@ -47,7 +65,7 @@
               <div class = "col-sm-4">
                 <div class="panel panel-default">
                   <div class="panel-heading" style = "background-color:#63B8FF;">
-                    <h5 align="center" style = "height:30px; color: white;"> Time: <%= @trip.time %> Hours</h5>
+                    <h5 align="center" style = "height:30px; color: white;"> Time: <%= trip.time %> Hours</h5>
                   </div>
                 </div>
               </div>
@@ -55,19 +73,9 @@
               <div class = "col-sm-4">
                 <div class="panel panel-default">
                    <div align="center" class="panel-heading" style = "background-color:#63B8FF;">
-                    <h5 style = "height:30px; color: white;"> Method:  <%= @trip.transportation %></h5>
+                    <h5 style = "height:30px; color: white;"> Method:  <%= trip.transportation %></h5>
                   </div>
 
-                </div>
-              </div>
-            </div>
-
-             <div class = "row">
-              <div class = "col-sm-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading" style = "background-color:#8DB6CD;">
-                      <h5 style = "height:60px; color: white; align: center;">Description: <%= @trip.notes %></h5>
-                  </div>
                 </div>
               </div>
             </div>
@@ -77,14 +85,14 @@
               <div class = "col-sm-6">
                 <div class="panel panel-default">
                   <div class="panel-heading" style = "background-color:#104E8B;">
-                    <h5 align="center" style = "height:30px; color: white;"> User: <%= @trip.user.email %></h5>
+                    <h5 align="center" style = "height:30px; color: white;"> User: <%= trip.user.email %></h5>
                   </div>
                 </div>
               </div>
                <div class = "col-sm-6">
                 <div class="panel panel-default">
                   <div align="center" class="panel-heading" style = "background-color:#104E8B;">
-                    <h5 style = "height:30px; color: white;"> Average Rating:   <%= @trip.ratings.average(:points) %></h5>
+                    <h5 style = "height:30px; color: white;"> Average Rating:   <%= trip.ratings.average(:points) %></h5>
                   </div>
 
                 </div>
@@ -94,10 +102,8 @@
 
 
 
-
               <div class = "row">
-                <div class = "col-sm-4">
-                </div>
+
                <div class = "col-sm-6">
 
                     <form action="/create_rating" class="form-horizontal">
@@ -107,7 +113,7 @@
 
                       <!-- Label and input for trip_id -->
 
-                          <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @trip.id %>">
+                          <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= trip.id %>">
 
 
                       <!-- Label and input for points -->
@@ -126,24 +132,35 @@
                     </form>
                 </div>
 
+            <div class="col-sm-6">
 
+          <a href="/trips/<%= trip.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+          <a href="/trips/<%= trip.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_trip/<%= trip.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
             </div>
             </div>
             </div>
 
 
-
+          </div>
           </div>
 
 
 
-          <h1></h1>
 
 
 
+    <% end %>
+  </tbody>
+</table>
 
-  </body>
-  </html>
 
 
 
