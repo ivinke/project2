@@ -11,6 +11,14 @@
   <% end %>
 <% end %>
 
+
+<div class="col-sm-3" style = "background-image: url(<%= asset_path 'montana30.jpg' %>); height: 600px; width: 370px; border: 1px solid black;">
+
+</div>
+
+
+<div class="col-sm-8">
+
 <form action="/update_trip/<%= @trip.id %>" class="form-horizontal">
   <!-- Label and input for from_city_id -->
   <div class="form-group">
@@ -89,7 +97,7 @@
       Transportation
     </label>
     <div class="col-sm-10">
-    <%= select_tag(:transportation, options_for_select(["Bus", "Balloon", "Boat / Ferry", "Car", "Airplane", "Bicycle",  "Other"], @trip.transportation), :class => "form-control") %>
+    <%= select_tag(:transportation, options_for_select(["Bus", "Balloon", "Ferry", "Car", "Airplane", "Bicycle",  "Other"], @trip.transportation), :class => "form-control") %>
     </div>
   </div>
 
@@ -106,7 +114,7 @@
       Points
     </label>
     <div class="col-sm-10">
-       <%= select_tag(:points, options_for_select(["1", "2", "3", "4", "5"]), :class => "form-control") %>
+       <%= select_tag(:points, options_for_select(["1", "2", "3", "4", "5"], selected: @rating.points), :class => "form-control") %>
     </div>
   </div>
 
@@ -116,3 +124,5 @@
     </div>
   </div>
 </form>
+
+</div>

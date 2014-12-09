@@ -1,6 +1,6 @@
  class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    @trips = Trip.all.sort_by{|trip| trip.average}.reverse
   end
 
   def show
@@ -22,7 +22,7 @@
     @trip.notes = params[:notes]
     @trip.photo = params[:photo]
     @trip.transportation = params[:transportation]
-    @trip.average_rating = params[:average_rating]
+
 
     @rating = Rating.new
     @rating.points = params[:points]
@@ -39,6 +39,7 @@
 
   def edit
     @trip = Trip.find(params[:id])
+    @rating = Rating.where({ :trip_id => @trip.id, :user_id => current_user.id }).first
   end
 
   def update
@@ -52,7 +53,7 @@
     @trip.notes = params[:notes]
     @trip.photo = params[:photo]
     @trip.transportation = params[:transportation]
-    @trip.average_rating = params[:average_rating]
+
 
     @rating = Rating.where({ :trip_id => @trip.id, :user_id => current_user.id }).first
     @rating.points = params[:points]
@@ -60,7 +61,7 @@
 
     if @trip.save
       @rating.save
-      redirect_to "/trips", :notice => "Trip updated successfully."
+      redirect_to "/trips/#{@trip.id}", :notice => "Trip updated successfully."
     else
       render 'edit'
     end
@@ -80,7 +81,7 @@
     @cityto = City.find_by({ :name => params[:second_city].downcase })
 
     if @cityto.present? && @cityfrom.present?
-      @tripsnew = Trip.where({ :from_city_id => @cityfrom.id, :to_city_id => @cityto.id })
+      @tripsnew = Trip.where({ :from_city_id => @cityfrom.id, :to_city_id => @cityto.id }).sort_by{|trip| trip.average}.reverse
     end
 
     if @tripsnew.present?
@@ -88,6 +89,10 @@
     else
       redirect_to "/", :notice => "No trip has been done between those cities."
     end
+
+  end
+
+  def about
 
   end
 end

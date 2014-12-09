@@ -12,6 +12,12 @@
 <% end %>
 
 
+<div class="col-sm-3" style = "background-image: url(<%= asset_path 'faro1.jpg' %>); height: 600px; width: 370px; border: 1px solid black;">
+
+</div>
+
+
+<div class="col-sm-8">
 <form action="/create_trip" class="form-horizontal">
   <!-- Label and input for from_city_id -->
   <div class="form-group">
@@ -110,14 +116,19 @@
     <label for="points" class="col-sm-2 control-label">
       Points
     </label>
+
     <div class="col-sm-10">
       <%= select_tag(:points, options_for_select(["1", "2", "3", "4", "5"]), :class => "form-control") %>
     </div>
   </div>
 
   <div class="form-group">
+  <div class="col-sm-2">
+     </div>
                           <input type="submit" value="Create Trip" class="btn btn-primary">
                       </div>
 
+</form>
+</div>
 
 

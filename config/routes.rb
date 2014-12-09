@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'trips#homepage'
   get('/search', { :controller => 'trips', :action => 'search' })
-
+  get('/about', { :controller => 'trips', :action => 'about' })
 
   # Routes for the Rating resource:
   # CREATE

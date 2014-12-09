@@ -28,4 +28,10 @@ class Trip < ActiveRecord::Base
      City.find(to_city_id)
   end
 
+  def average
+    self.ratings.average(:points).round(2)
+  end
+
+
+
 end
