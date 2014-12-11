@@ -18,9 +18,11 @@ class RatingsController < ApplicationController
     @rating.points = params[:points]
 
     if @rating.save
-      redirect_to "/ratings", :notice => "Rating created successfully."
+      @trip = Trip.find(@rating.trip_id)
+      redirect_to "/trips/#{@trip.id}", :notice => "Rating created successfully."
     else
-      render 'new'
+      @trip = Trip.find(@rating.trip_id)
+      redirect_to "/trips/#{@trip.id}", :alert => "Trip has already been rated."
     end
   end
 

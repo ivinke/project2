@@ -5,7 +5,6 @@
 
   def show
     @trip = Trip.find(params[:id])
-
   end
 
   def new
@@ -31,7 +30,7 @@
       @rating.user_id = current_user.id
       @rating.trip_id = @trip.id
       @rating.save
-      redirect_to "/trips", :notice => "Trip created successfully."
+      redirect_to "/trips/#{@trip.id}", :notice => "Trip created successfully."
     else
       render 'new'
     end

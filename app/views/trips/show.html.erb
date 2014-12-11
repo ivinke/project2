@@ -96,9 +96,9 @@
 
 
               <div class = "row">
-                <div class = "col-sm-4">
+                <div class = "col-sm-2">
                 </div>
-               <div class = "col-sm-6">
+               <div class = "col-sm-4">
 
                     <form action="/create_rating" class="form-horizontal">
                       <!-- Label and input for user_id -->
@@ -113,7 +113,7 @@
                       <!-- Label and input for points -->
                       <div class="form-group">
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-1">
                           <div class = "ratetrip">
                            <%= select_tag(:points, options_for_select(["1", "2", "3", "4", "5"]), :class => "form-control") %>
                            </div>
@@ -125,6 +125,18 @@
                       </div>
                     </form>
                 </div>
+               <div class="col-sm-6">
+
+          <% if current_user == @trip.user%>
+          <a href="/trips/<%= @trip.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_trip/<%= @trip.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+             <% end %>
+        </div>
+
 
 
             </div>
